@@ -2,62 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Accessibility Fixer - Professional Developer Tool Design System */
+/* Professional Enterprise Design System */
 
 @layer base {
   :root {
-    /* Core Colors */
-    --background: 248 250 252;  /* Slate-50 - softer */
-    --foreground: 51 65 85;     /* Slate-700 - less harsh */
+    /* Core Colors - Professional Blue-Gray Palette */
+    --background: 248 250 252;  /* Slate-50 - clean background */
+    --foreground: 15 23 42;     /* Slate-900 - deep text for contrast */
     
-    /* Code Theme */
-    --code-background: 30 41 59;  /* Slate-700 - lighter */
-    --code-foreground: 226 232 240;  /* Slate-200 */
-    --code-muted: 148 163 184;   /* Slate-400 */
+    /* Code Theme - Professional Dark */
+    --code-background: 30 41 59;  /* Slate-800 - professional dark */
+    --code-foreground: 241 245 249;  /* Slate-100 - light text */
+    --code-muted: 148 163 184;   /* Slate-400 - muted code elements */
     
-    /* Brand Colors */
-    --primary: 147 51 234;       /* Violet-600 - professional purple */
+    /* Brand Colors - Professional Blue */
+    --primary: 59 130 246;       /* Blue-500 - professional blue */
     --primary-foreground: 255 255 255;
-    --primary-glow: 196 181 253; /* Violet-300 */
+    --primary-glow: 147 197 253; /* Blue-300 - subtle glow */
     
-    /* Status Colors */
-    --success: 34 197 94;        /* Green-500 */
+    /* Status Colors - Professional */
+    --success: 34 197 94;        /* Green-500 - success */
     --success-foreground: 255 255 255;
-    --warning: 245 158 11;       /* Amber-500 */
+    --warning: 245 158 11;       /* Amber-500 - warning */
     --warning-foreground: 255 255 255;
-    --error: 239 68 68;          /* Red-500 */
+    --error: 239 68 68;          /* Red-500 - error */
     --error-foreground: 255 255 255;
     
-    /* UI Elements */
-    --card: 255 255 255;         /* White */
-    --card-foreground: 51 65 85; /* Slate-700 - softer */
-    --border: 226 232 240;       /* Slate-200 - softer */
-    --input: 248 250 252;        /* Slate-50 - softer */
-    --muted: 148 163 184;        /* Slate-400 */
-    --muted-foreground: 100 116 139; /* Slate-500 */
-    --accent: 241 245 249;       /* Slate-100 - softer */
-    --accent-foreground: 51 65 85; /* Slate-700 */
-    --ring: 147 51 234;          /* Primary violet */
+    /* UI Elements - Clean Professional */
+    --card: 255 255 255;         /* White - clean cards */
+    --card-foreground: 15 23 42; /* Slate-900 - dark text */
+    --border: 226 232 240;       /* Slate-200 - subtle borders */
+    --input: 248 250 252;        /* Slate-50 - clean inputs */
+    --muted: 148 163 184;        /* Slate-400 - muted elements */
+    --muted-foreground: 100 116 139; /* Slate-500 - muted text */
+    --accent: 241 245 249;       /* Slate-100 - subtle accent */
+    --accent-foreground: 15 23 42; /* Slate-900 - accent text */
+    --ring: 59 130 246;          /* Blue-500 - focus ring */
     
-    /* Secondary Colors */
-    --secondary: 248 250 252;    /* Slate-50 - softer */
-    --secondary-foreground: 51 65 85; /* Slate-700 */
+    /* Secondary Colors - Professional */
+    --secondary: 248 250 252;    /* Slate-50 - secondary background */
+    --secondary-foreground: 15 23 42; /* Slate-900 - secondary text */
     
-    /* Destructive */
-    --destructive: 220 38 127;   /* Pink-700 - less harsh */
+    /* Destructive - Professional Red */
+    --destructive: 220 38 127;   /* Pink-700 - destructive actions */
     --destructive-foreground: 255 255 255;
     
-    /* Popover */
-    --popover: 255 255 255;      /* White */
-    --popover-foreground: 51 65 85; /* Slate-700 */
+    /* Popover - Clean Professional */
+    --popover: 255 255 255;      /* White - clean popovers */
+    --popover-foreground: 15 23 42; /* Slate-900 - popover text */
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(263 70% 80%));
+    /* Gradients - Professional */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
     --gradient-code: linear-gradient(135deg, hsl(215 28% 44%), hsl(215 20% 65%));
     
-    /* Shadows */
-    --shadow-elegant: 0 10px 25px -3px hsl(17 24% 39% / 0.1), 0 4px 6px -2px hsl(17 24% 39% / 0.05);
-    --shadow-code: 0 4px 14px 0 hsl(15 23% 42% / 0.39);
+    /* Shadows - Professional */
+    --shadow-elegant: 0 10px 25px -3px hsl(217 33% 17% / 0.1), 0 4px 6px -2px hsl(217 33% 17% / 0.05);
+    --shadow-code: 0 4px 14px 0 hsl(215 25% 27% / 0.39);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -67,13 +67,15 @@
   }
 
   .dark {
-    /* Dark theme (keeping it simple for now) */
-    --background: 15 23 42;      /* Slate-900 */
-    --foreground: 248 250 252;   /* Slate-50 */
-    --card: 30 41 59;            /* Slate-700 */
-    --card-foreground: 248 250 252; /* Slate-50 */
-    --border: 51 65 85;          /* Slate-600 */
-    --input: 30 41 59;           /* Slate-700 */
+    /* Dark theme - Professional Dark */
+    --background: 15 23 42;      /* Slate-900 - dark background */
+    --foreground: 248 250 252;   /* Slate-50 - light text */
+    --card: 30 41 59;            /* Slate-800 - dark cards */
+    --card-foreground: 248 250 252; /* Slate-50 - light text */
+    --border: 51 65 85;          /* Slate-700 - dark borders */
+    --input: 30 41 59;           /* Slate-800 - dark inputs */
+    --primary: 59 130 246;       /* Blue-500 - keep primary blue */
+    --primary-foreground: 255 255 255;
   }
 }
 
