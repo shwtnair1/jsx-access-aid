@@ -7,18 +7,18 @@
 @layer base {
   :root {
     /* Core Colors */
-    --background: 249 250 251;  /* Cool gray-50 */
-    --foreground: 17 24 39;     /* Gray-900 */
+    --background: 248 250 252;  /* Slate-50 - softer */
+    --foreground: 51 65 85;     /* Slate-700 - less harsh */
     
     /* Code Theme */
-    --code-background: 15 23 42;  /* Slate-900 */
-    --code-foreground: 248 250 252;  /* Slate-50 */
-    --code-muted: 100 116 139;   /* Slate-500 */
+    --code-background: 30 41 59;  /* Slate-700 - lighter */
+    --code-foreground: 226 232 240;  /* Slate-200 */
+    --code-muted: 148 163 184;   /* Slate-400 */
     
     /* Brand Colors */
-    --primary: 236 72 153;       /* Pink-500 - Creative tech vibe */
+    --primary: 99 102 241;       /* Indigo-500 - calmer */
     --primary-foreground: 255 255 255;
-    --primary-glow: 249 168 212; /* Pink-300 */
+    --primary-glow: 165 180 252; /* Indigo-300 */
     
     /* Status Colors */
     --success: 34 197 94;        /* Green-500 */
@@ -30,30 +30,30 @@
     
     /* UI Elements */
     --card: 255 255 255;         /* White */
-    --card-foreground: 17 24 39; /* Gray-900 */
-    --border: 229 231 235;       /* Gray-200 */
-    --input: 243 244 246;        /* Gray-100 */
-    --muted: 156 163 175;        /* Gray-400 */
-    --muted-foreground: 75 85 99; /* Gray-600 */
-    --accent: 240 245 255;       /* Blue-50 */
-    --accent-foreground: 17 24 39; /* Gray-900 */
-    --ring: 236 72 153;          /* Primary pink */
+    --card-foreground: 51 65 85; /* Slate-700 - softer */
+    --border: 226 232 240;       /* Slate-200 - softer */
+    --input: 248 250 252;        /* Slate-50 - softer */
+    --muted: 148 163 184;        /* Slate-400 */
+    --muted-foreground: 100 116 139; /* Slate-500 */
+    --accent: 241 245 249;       /* Slate-100 - softer */
+    --accent-foreground: 51 65 85; /* Slate-700 */
+    --ring: 99 102 241;          /* Primary indigo */
     
     /* Secondary Colors */
-    --secondary: 241 245 249;    /* Slate-100 */
-    --secondary-foreground: 30 41 59; /* Slate-700 */
+    --secondary: 248 250 252;    /* Slate-50 - softer */
+    --secondary-foreground: 51 65 85; /* Slate-700 */
     
     /* Destructive */
-    --destructive: 239 68 68;    /* Red-500 */
+    --destructive: 220 38 127;   /* Pink-700 - less harsh */
     --destructive-foreground: 255 255 255;
     
     /* Popover */
     --popover: 255 255 255;      /* White */
-    --popover-foreground: 17 24 39; /* Gray-900 */
+    --popover-foreground: 51 65 85; /* Slate-700 */
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(236 72% 153%), hsl(249 168% 212%));
-    --gradient-code: linear-gradient(135deg, hsl(15 23% 42%), hsl(30 41% 59%));
+    --gradient-primary: linear-gradient(135deg, hsl(237 61% 67%), hsl(238 63% 75%));
+    --gradient-code: linear-gradient(135deg, hsl(215 28% 44%), hsl(215 20% 65%));
     
     /* Shadows */
     --shadow-elegant: 0 10px 25px -3px hsl(17 24% 39% / 0.1), 0 4px 6px -2px hsl(17 24% 39% / 0.05);
