@@ -16,9 +16,9 @@
     --code-muted: 148 163 184;   /* Slate-400 */
     
     /* Brand Colors */
-    --primary: 99 102 241;       /* Indigo-500 - calmer */
+    --primary: 147 51 234;       /* Violet-600 - professional purple */
     --primary-foreground: 255 255 255;
-    --primary-glow: 165 180 252; /* Indigo-300 */
+    --primary-glow: 196 181 253; /* Violet-300 */
     
     /* Status Colors */
     --success: 34 197 94;        /* Green-500 */
@@ -37,7 +37,7 @@
     --muted-foreground: 100 116 139; /* Slate-500 */
     --accent: 241 245 249;       /* Slate-100 - softer */
     --accent-foreground: 51 65 85; /* Slate-700 */
-    --ring: 99 102 241;          /* Primary indigo */
+    --ring: 147 51 234;          /* Primary violet */
     
     /* Secondary Colors */
     --secondary: 248 250 252;    /* Slate-50 - softer */
@@ -52,7 +52,7 @@
     --popover-foreground: 51 65 85; /* Slate-700 */
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(237 61% 67%), hsl(238 63% 75%));
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(263 70% 80%));
     --gradient-code: linear-gradient(135deg, hsl(215 28% 44%), hsl(215 20% 65%));
     
     /* Shadows */
