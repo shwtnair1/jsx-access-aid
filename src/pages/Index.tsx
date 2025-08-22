@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from "react";
 import Header from "@/components/Header";
 import CodeEditor from "@/components/CodeEditor";
 import ResultsPanel from "@/components/ResultsPanel";
-import { fixAccessibility, FixResult } from "@/lib/accessibility-fixer";
+import { fixAccessibilityWithAI, FixResult } from "@/lib/ai-accessibility-fixer";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -38,35 +38,35 @@ const Index = () => {
 
     setIsAnalyzing(true);
     
-    // Simulate API call delay for better UX
-    setTimeout(() => {
-      try {
-        const fixResult = fixAccessibility(sourceCode);
-        setResult(fixResult);
-        setEditedCode(fixResult.code || sourceCode);
-        
-        if (fixResult.hasChanges) {
-          toast({
-            title: "Analysis complete",
-            description: `Found and fixed ${fixResult.fixes.length} accessibility ${fixResult.fixes.length === 1 ? 'issue' : 'issues'}`,
-          });
-        } else {
-          toast({
-            title: "Great job!",
-            description: "No accessibility issues detected in your code",
-          });
-        }
-      } catch (error) {
-        console.error('Analysis error:', error);
+    try {
+      // Detect language based on code content
+      const language = sourceCode.includes('jsx') || sourceCode.includes('onClick') || sourceCode.includes('className') ? 'jsx' : 'html';
+      
+      const fixResult = await fixAccessibilityWithAI(sourceCode, language);
+      setResult(fixResult);
+      setEditedCode(fixResult.code || sourceCode);
+      
+      if (fixResult.hasChanges) {
         toast({
-          title: "Analysis failed", 
-          description: "An error occurred while analyzing your code",
-          variant: "destructive",
+          title: "AI Analysis Complete",
+          description: `Found and fixed ${fixResult.fixes.length} accessibility ${fixResult.fixes.length === 1 ? 'issue' : 'issues'} using AI`,
         });
-      } finally {
-        setIsAnalyzing(false);
+      } else {
+        toast({
+          title: "Excellent!",
+          description: "AI analysis found no accessibility issues in your code",
+        });
       }
-    }, 1200);
+    } catch (error) {
+      console.error('AI Analysis error:', error);
+      toast({
+        title: "Analysis failed", 
+        description: "An error occurred during AI analysis. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsAnalyzing(false);
+    }
   }, [sourceCode, toast]);
 
   const copyToClipboard = useCallback(async (text: string, label: string) => {
@@ -142,10 +142,10 @@ const Index = () => {
       <main className="flex-1 container mx-auto p-6 space-y-6">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            Accessibility Fixer
+            AI-Powered Accessibility Fixer
           </h1>
           <p className="text-muted-foreground">
-            Transform your JSX/HTML into accessible, inclusive code automatically
+            Transform your JSX/HTML into accessible, inclusive code using advanced AI analysis
           </p>
         </div>
 
@@ -241,8 +241,8 @@ const Index = () => {
                   <div className="text-center space-y-4">
                     <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
                     <div className="space-y-2">
-                      <p className="font-medium">Analyzing your code...</p>
-                      <p className="text-sm text-muted-foreground">Checking for accessibility issues</p>
+                      <p className="font-medium">AI is analyzing your code...</p>
+                      <p className="text-sm text-muted-foreground">Using advanced AI to detect accessibility issues</p>
                     </div>
                   </div>
                 </div>
@@ -250,18 +250,19 @@ const Index = () => {
                 <div className="flex items-center justify-center h-full">
                   <div className="text-center space-y-4">
                     <div className="w-16 h-16 rounded-full bg-muted/20 flex items-center justify-center mx-auto">
-                      <AlertCircle className="w-8 h-8 text-muted-foreground" />
+                      <Sparkles className="w-8 h-8 text-muted-foreground" />
                     </div>
                     <div className="space-y-2">
-                      <p className="font-medium">Ready to analyze</p>
-                      <p className="text-sm text-muted-foreground">Paste your code and click "Fix Accessibility"</p>
+                      <p className="font-medium">Ready for AI analysis</p>
+                      <p className="text-sm text-muted-foreground">Paste your code and click "Fix Accessibility" to use AI</p>
                     </div>
                   </div>
                 </div>
               ) : (
                 <Tabs defaultValue="overview" className="flex flex-col h-full">
-                  <TabsList className="grid w-full grid-cols-3">
+                  <TabsList className="grid w-full grid-cols-4">
                     <TabsTrigger value="overview">Overview</TabsTrigger>
+                    <TabsTrigger value="analysis">AI Analysis</TabsTrigger>
                     <TabsTrigger value="code">Fixed Code</TabsTrigger>
                     <TabsTrigger value="changes">Changes</TabsTrigger>
                   </TabsList>
@@ -311,6 +312,73 @@ const Index = () => {
                     )}
                   </TabsContent>
 
+                  <TabsContent value="analysis" className="flex-1 mt-4 space-y-4">
+                    {result && (
+                      <div className="space-y-4">
+                        {/* AI Analysis Summary */}
+                        {result.analysis && (
+                          <div className="p-4 rounded-lg border bg-card/50">
+                            <h3 className="font-medium text-sm text-foreground mb-2">AI Analysis Summary</h3>
+                            <p className="text-sm text-foreground leading-relaxed">{result.analysis}</p>
+                          </div>
+                        )}
+
+                        {/* AI Suggestions */}
+                        {result.suggestions && result.suggestions.length > 0 && (
+                          <div className="space-y-3">
+                            <h3 className="font-medium text-sm text-foreground">AI Recommendations</h3>
+                            <div className="space-y-2">
+                              {result.suggestions.map((suggestion, idx) => (
+                                <div key={idx} className="p-3 rounded-lg border bg-primary/5 border-primary/20">
+                                  <div className="flex items-start gap-2">
+                                    <Sparkles className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                    <p className="text-sm text-foreground">{suggestion}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Confidence Scores */}
+                        {result.fixes.some(f => f.confidence) && (
+                          <div className="space-y-3">
+                            <h3 className="font-medium text-sm text-foreground">Issue Confidence Levels</h3>
+                            <div className="space-y-2">
+                              {result.fixes
+                                .filter(f => f.confidence)
+                                .sort((a, b) => (b.confidence || 0) - (a.confidence || 0))
+                                .map((fix, idx) => (
+                                  <div key={idx} className="p-3 rounded-lg border bg-card/50">
+                                    <div className="flex items-center justify-between mb-2">
+                                      <Badge variant={getBadgeVariant(fix.action)} className="text-xs">
+                                        {fix.action}
+                                      </Badge>
+                                      <div className="flex items-center gap-2">
+                                        <div className="w-16 h-2 bg-muted rounded-full overflow-hidden">
+                                          <div 
+                                            className="h-full bg-primary transition-all duration-300"
+                                            style={{ width: `${(fix.confidence || 0) * 100}%` }}
+                                          />
+                                        </div>
+                                        <span className="text-xs text-muted-foreground">
+                                          {Math.round((fix.confidence || 0) * 100)}%
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <p className="text-sm text-foreground mb-1">{fix.summary}</p>
+                                    {fix.explanation && (
+                                      <p className="text-xs text-muted-foreground">{fix.explanation}</p>
+                                    )}
+                                  </div>
+                                ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </TabsContent>
+
                   <TabsContent value="code" className="flex-1 mt-4">
                     <div className="h-[400px] rounded-lg border bg-code-background">
                       <textarea
@@ -356,20 +424,20 @@ const Index = () => {
           <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-success" />
-              <span>Automated fixes</span>
+              <span>AI-powered analysis</span>
             </div>
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-primary" />
-              <span>WCAG compliant</span>
+              <span>WCAG 2.1 compliant</span>
             </div>
             <div className="flex items-center gap-2">
               <AlertCircle className="w-4 h-4 text-warning" />
-              <span>Best practices</span>
+              <span>Smart suggestions</span>
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
-            Built for frontend developers who care about accessibility. 
-            <span className="text-primary ml-1 font-medium">Make the web accessible for everyone.</span>
+            Powered by advanced AI for comprehensive accessibility analysis. 
+            <span className="text-primary ml-1 font-medium">Making the web accessible for everyone.</span>
           </p>
         </div>
       </main>
